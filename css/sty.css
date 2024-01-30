@@ -1,0 +1,27 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+#input, #output {
+    margin-bottom: 10px;
+    padding: 10px 7px;
+}
+
+div {
+    margin: 0px 20px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+button {
+    background: green;
+    border: none;
+    padding: 7px 10px;
+    color: #fff;
+}
