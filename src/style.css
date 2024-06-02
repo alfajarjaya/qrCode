@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap');
+
+* {
+    font-family: "Reddit Mono", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+body {
+    background: url('./bg.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    padding: 30px 20px;
+    backdrop-filter: blur(20%);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.container h1 {
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form input {
+    padding: 8px 5px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: #000;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.form input::placeholder {
+    color: rgb(0, 0, 0, 0.6);
+}
+
+.form input::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    transition: 0.5s;
+}
+
+.form input:focus::before {
+    width: 100%;
+}
+
+.form button {
+    padding: 8px 5px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #002bff;
+    margin-bottom: 20px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.form button:hover {
+    backdrop-filter: blur(20%);
+    background-color: rgba(0, 0, 0, 0.5);
+    background-size: 400%;
+    color: #fff;
+    animation: move 1s infinite ease-in-out;
+}
+
+.output {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.output button {
+    padding: 8px 5px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #ff7300;
+    cursor: pointer;
+}
+
+.qrcode {
+    padding: 30px;
+    background: #fff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
