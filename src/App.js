@@ -5,6 +5,7 @@ import './style.css';
 
 function App() {
   const [inputValue, setInputValue] = useState('');
+  const [outputName, setOutputName] = useState('');
   const [showQRCode, setShowQRCode] = useState(false);
 
   const handleInputChange = (event) => {
@@ -12,12 +13,16 @@ function App() {
     setShowQRCode(false);
   }
 
+  const handleOutputNameChange = (event) => {
+    setOutputName(event.target.value);
+  }
+
   const handleGenerateQRCode = () => {
     setShowQRCode(true);
   }
 
   const handleDownloadQRCode = () => {
-    if (!inputValue) return;
+    if (!inputValue || !outputName) return;
 
     const node = document.getElementById('output');
 
@@ -25,7 +30,7 @@ function App() {
       .then(function (dataUrl) {
         let downloadLink = document.createElement('a');
         downloadLink.href = dataUrl;
-        downloadLink.download = `${inputValue}.png`;
+        downloadLink.download = `${outputName}.png`;
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
@@ -39,20 +44,23 @@ function App() {
     <div className="container">
       <h1>QR Code Generator</h1>
       <div className="form">
-        <input id="input" type="text" value={inputValue} onChange={handleInputChange} placeholder="Enter text or link" />
+        <input id="input" type="text" value={inputValue} onChange={handleInputChange} placeholder="Enter text or link" required />
+        <input id="outputName" type="text" value={outputName} onChange={handleOutputNameChange} placeholder="Enter output name" required />
         <button onClick={handleGenerateQRCode}>Generate</button>
+        {showQRCode && (
+          <div className="output">
+            <div style={{ display: "flex", justifyContent: "center", margin: 20 }}>
+              <div className="qrcode" id="output">
+                <QRCode value={inputValue} size={128} />
+              </div>
+            </div>
+            <button onClick={handleDownloadQRCode}>Download</button>
+          </div>
+        )}
+        <p>Create by <a href="https://alfajjar.vercel.app" target="_blank" rel="noreferrer">bang_jarrrz</a></p>
       </div>
 
-      {showQRCode && (
-        <div className="output" id="output">
-          <div style={{ display: "flex", justifyContent: "center", margin: 20 }} >
-            <div className="qrcode">
-              <QRCode value={inputValue} size={128} />
-            </div>
-          </div>
-          <button onClick={handleDownloadQRCode}>Download</button>
-        </div>
-      )}
+
     </div>
   )
 }
