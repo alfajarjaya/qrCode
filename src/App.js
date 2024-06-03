@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import QRCode from "react-qr-code";
 import { toPng } from 'html-to-image';
+import Swal from "sweetalert2";
 import './style.css';
 
 function App() {
@@ -18,12 +19,18 @@ function App() {
   }
 
   const handleGenerateQRCode = () => {
+    if (!inputValue || !outputName) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please Enter text or link adn Enter output name',
+      });
+      return;
+    }
     setShowQRCode(true);
   }
 
   const handleDownloadQRCode = () => {
-    if (!inputValue || !outputName) return;
-
     const node = document.getElementById('output');
 
     toPng(node)
@@ -59,8 +66,6 @@ function App() {
         )}
         <p>Create by <a href="https://alfajjar.vercel.app" target="_blank" rel="noreferrer">bang_jarrrz</a></p>
       </div>
-
-
     </div>
   )
 }
